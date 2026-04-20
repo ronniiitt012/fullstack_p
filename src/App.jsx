@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import HomePage from './pages/HomePage';
 import JobDetailsPage from './pages/JobDetailsPage';
+import PostJobPage from './pages/PostJobPage';
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
           <Routes>
             <Route path="/" element={<HomePage />} />
             <Route path="/job/:id" element={<JobDetailsPage />} />
+            <Route path="/post-job" element={<PostJobPage />} />
           </Routes>
         </main>
         

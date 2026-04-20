@@ -42,7 +42,7 @@ const Navbar = () => {
           <button onClick={toggleTheme} className="theme-toggle" aria-label="Toggle Theme">
             {theme === 'light' ? <Moon size={20} /> : <Sun size={20} />}
           </button>
-          <button className="btn btn-primary btn-sm">Post a Job</button>
+          <Link to="/post-job" className="btn btn-primary btn-sm">Post a Job</Link>
         </div>
 
         <div className="navbar-mobile-toggle">
@@ -63,7 +63,7 @@ const Navbar = () => {
               {theme === 'light' ? <Moon size={20} /> : <Sun size={20} />}
               <span className="ml-2">{theme === 'light' ? 'Dark Mode' : 'Light Mode'}</span>
             </button>
-            <button className="btn btn-primary btn-sm">Post Job</button>
+            <Link to="/post-job" className="btn btn-primary btn-sm" onClick={() => setMobileMenuOpen(false)}>Post Job</Link>
           </div>
         </div>
       )}
