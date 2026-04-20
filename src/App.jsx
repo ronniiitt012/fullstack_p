@@ -4,6 +4,7 @@ import Navbar from './components/Navbar';
 import HomePage from './pages/HomePage';
 import JobDetailsPage from './pages/JobDetailsPage';
 import PostJobPage from './pages/PostJobPage';
+import ApplicationsPage from './pages/ApplicationsPage';
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
             <Route path="/" element={<HomePage />} />
             <Route path="/job/:id" element={<JobDetailsPage />} />
             <Route path="/post-job" element={<PostJobPage />} />
+            <Route path="/admin" element={<ApplicationsPage />} />
           </Routes>
         </main>
         

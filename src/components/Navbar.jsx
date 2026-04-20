@@ -39,6 +39,7 @@ const Navbar = () => {
           <Link to="/" className="nav-link">Home</Link>
           <a href="#jobs" className="nav-link">Jobs</a>
           <a href="#about" className="nav-link">About</a>
+          <Link to="/admin" className="nav-link">Admin</Link>
           <button onClick={toggleTheme} className="theme-toggle" aria-label="Toggle Theme">
             {theme === 'light' ? <Moon size={20} /> : <Sun size={20} />}
           </button>
@@ -58,6 +59,7 @@ const Navbar = () => {
           <Link to="/" className="mobile-nav-link" onClick={() => setMobileMenuOpen(false)}>Home</Link>
           <a href="#jobs" className="mobile-nav-link" onClick={() => setMobileMenuOpen(false)}>Jobs</a>
           <a href="#about" className="mobile-nav-link" onClick={() => setMobileMenuOpen(false)}>About</a>
+          <Link to="/admin" className="mobile-nav-link" onClick={() => setMobileMenuOpen(false)}>Admin</Link>
           <div className="mobile-nav-actions flex justify-between items-center mt-4">
             <button onClick={toggleTheme} className="theme-toggle" aria-label="Toggle Theme">
               {theme === 'light' ? <Moon size={20} /> : <Sun size={20} />}

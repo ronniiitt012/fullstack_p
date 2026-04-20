@@ -29,7 +29,7 @@ const ApplyForm = ({ jobTitle, onClose }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
+
     if (!selectedFile) {
       setUploadError('Please select a resume file to upload.');
       return;
@@ -39,33 +39,37 @@ const ApplyForm = ({ jobTitle, onClose }) => {
     setUploadError('');
 
     try {
-      // Send the file directly to our Vercel API route
-      const response = await fetch('/api/upload', {
+      // Bundle all applicant fields + resume file into one multipart request
+      const data = new FormData();
+      data.append('name',        formData.name);
+      data.append('email',       formData.email);
+      data.append('phone',       formData.phone);
+      data.append('coverLetter', formData.coverLetter);
+      data.append('jobTitle',    jobTitle);
+      data.append('resume',      selectedFile, selectedFile.name);
+
+      const response = await fetch('/api/apply', {
         method: 'POST',
-        headers: {
-          'x-filename': selectedFile.name,
-        },
-        body: selectedFile,
+        body: data,          // FormData sets Content-Type automatically
       });
 
       if (!response.ok) {
-        const errorData = await response.json();
-        throw new Error(errorData.error || 'Upload failed');
+        const err = await response.json();
+        throw new Error(err.error || 'Submission failed');
       }
 
-      const blob = await response.json();
-      
-      console.log('Resume successfully uploaded to Vercel Blob:', blob.url);
-      console.log('Applicant Data:', { ...formData, resumeUrl: blob.url });
-      
+      const result = await response.json();
+      console.log('Application saved — ID:', result.id, '| Resume:', result.resumeUrl);
+
       setSubmitted(true);
     } catch (err) {
       console.error(err);
-      setUploadError(err.message || 'An error occurred while uploading. Please ensure you have configured Vercel Blob.');
+      setUploadError(err.message || 'An error occurred. Please try again.');
     } finally {
       setIsUploading(false);
     }
   };
+
 
   if (submitted) {
     return (
